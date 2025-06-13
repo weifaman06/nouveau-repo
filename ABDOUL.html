@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Réservation d'hôtel</title>
+  <style>
+    
+body {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+    }
+    /* 🔁 memorial-sankara.jpg 🔁 */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-image: url('memorial-sankara.jpg'); /* 🔁 Remplacez ce lien ici */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+     
+      z-index: -1;
+    }
+
+
+    form { max-width: 400px; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 100%; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Réserver votre séjour</h1>
+  <form action="#" method="post">
+    <label>Nom complet :</label>
+    <input type="text" name="nom" required>
+
+    <label>Email :</label>
+    <input type="email" name="email" required>
+
+    <label>Date d’arrivée :</label>
+    <input type="date" name="arrivee" required>
+
+    <label>Nombre de nuits :</label>
+    <input type="number" name="nuits" min="1" required>
+
+    <label>Type de chambre :</label>
+    <select name="chambre">
+      <option value="simple">Simple</option>
+      <option value="double">Double</option>
+      <option value="suite">Suite</option>
+    </select>
+
+    <label>Commentaires :</label>
+    <textarea name="commentaire" rows="3"></textarea>
+
+    <br><br>
+    <input type="submit" value="Réserver">
+  </form>
+  <nav style="background:#eee; padding:10px; margin-bottom:20px;">
+   <a href="Grace.html">ACCEUIL</a><br>
+    <a href="AZIZ.html">PATRIMOINE</a><br>
+    <a href="ABDOUL.html">RESERVATION D'Hôtel</a><br>
+    <a href="Soulama.html">GALERIE</a><br>
+   </body>
+</html>
+  </div>
+</body>
+
+   
+        
+   
+</nav>
+</body>
+</html>
