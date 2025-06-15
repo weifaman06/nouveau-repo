@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Mémorial Thomas Sankara</title>
+  <title>VILLAGE ARTISANAL</title>
   <style>
     * {
       margin: 0;
@@ -10,14 +10,10 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      font-family: 'Roboto', sans-serif;
-      color: #fff;
-    }
     /* 🔁 memorial-sankara.jpg 🔁 */
     body::before {
-      content: "";
+
+content: "";
       position: fixed;
       top: 0;
       left: 0;
@@ -42,6 +38,18 @@
       text-shadow: 2px 2px 8px black;
     }
 
+#village {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 90%;
+}
+
+#village img{
+  aspect-ratio: 16/9;
+  width: 400;
+  height: 200;
+}
     .section {
       padding: 40px 20px;
       max-width: 1000px;
@@ -95,7 +103,7 @@
 <body>
 
 <header>
-  <h1>🇧🇫 🫶🫶😀😀😀😄😁VILLAGE ARTISANAL A OUAGADOUGOU😁😄😀😀😀🫶🫶</h1>
+  <h1>🇧🇫 🫶😁VILLAGE ARTISANAL A OUAGADOUGOU😀🫶🇧🇫 </h1>
 
   <h2>DESCRIPTION</h2>
 
@@ -135,18 +143,16 @@
 
 👉 Un lieu où l’art prend vie… L’avez-vous exploré ? #ArtisanatBurkinabè #OuagaCulture</p>
 
-<table>
-<tr>
-<th><img src=" vil2.jpeg" alt="pt1" width="400px height="200px">
-<th><img src="vil2jpeg.jpeg" alt=" " width="400px" height="200px">
-<th><img src="vil9.jpg" alt="pt1" widht="400px" height="200px"> <th></a>
-<th><img src="vil12.jpg" alt="pt1" width="300px" height="300px">
-<th><img src="vil11.jpg" alt="pt1" width="300px" height="300px">
-<th><img src="vil.31.jpg" alt="pt1" width="300px" height="300px">
-</tr>
-<tr>
-<td><img src="vil33.jpeg" alt="pt1" width="300px" height="300px">
 
+<div id="village">
+  <img src=" vil2.jpeg" alt="pt1" width="400px height="200px">
+<img src="vil2jpeg.jpeg" alt=" " width="400px" height="200px">
+<img src="vil9.jpg" alt="pt1" widht="400px" height="200px"> 
+<img src="vil12.jpg" alt="pt1" width="300px" height="300px">
+<img src="vil11.jpg" alt="pt1" width="300px" height="300px">
+<img src="vil.31.jpg" alt="pt1" width="300px" height="300px">
+<img src="vil33.jpeg" alt="pt1" width="300px" height="300px">
+</div>
 
 
 </table>
