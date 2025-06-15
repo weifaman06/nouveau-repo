@@ -3,76 +3,291 @@
 <head>
   <meta charset="UTF-8">
   <title>Réservation d'hôtel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    
-body {
-      height: 100%;
-      font-family: 'Roboto', sans-serif;
-      color: #fff;
+    :root {
+      --primary: #2d89ef;
+      --accent: #16a085;
+      --glass: rgba(20, 20, 40, 0.62);
+      --glass-light: rgba(255,255,255,0.09);
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.22);
+      --input-bg: #e5eaf5;
+      --input-color: #181e22;
     }
-    /* 🔁 memorial-sankara.jpg 🔁 */
+    html, body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      color: #fff;
+      background:
+        linear-gradient(120deg, rgba(45,137,239,0.25) 0%, rgba(22,160,133,0.18) 100%),
+        url('memorial-sankara.jpg') center/cover no-repeat fixed;
+      background-attachment: fixed;
+    }
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background-image: url('memorial-sankara.jpg'); /* 🔁 Remplacez ce lien ici */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-     
-      z-index: -1;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: inherit;
+      filter: brightness(0.52) blur(3px);
+      z-index: -2;
     }
 
+    .reservation-container {
+      background: var(--glass);
+      backdrop-filter: blur(12px) saturate(120%);
+      box-shadow: var(--shadow);
+      border-radius: 36px;
+      max-width: 420px;
+      margin: 60px auto 30px;
+      padding: 40px 34px 28px 34px;
+      text-align: center;
+      animation: fadeInUp 1.2s cubic-bezier(.21,.98,.6,.99);
+      animation-fill-mode: both;
+      position: relative;
+      transition: max-width 0.3s, padding 0.3s;
+      overflow: hidden;
+    }
+    .reservation-container::before {
+      content: "";
+      position: absolute;
+      top: -40px; left: -40px; right: -40px; bottom: -40px;
+      background: linear-gradient(120deg, var(--primary) 10%, transparent 60%, var(--accent) 100%);
+      opacity: 0.09;
+      z-index: 0;
+      pointer-events: none;
+      animation: lightSweep 3.8s linear infinite alternate;
+      border-radius: 44px;
+      filter: blur(12px);
+    }
+    @keyframes lightSweep {
+      0% { background-position: 0% 70%; }
+      100% { background-position: 100% 30%; }
+    }
+    @keyframes fadeInUp {
+      0% {opacity:0; transform:translateY(38px) scale(0.98);}
+      100% {opacity:1; transform:translateY(0) scale(1);}
+    }
+    h1 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2rem;
+      margin-bottom: 17px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px #2227;
+      font-weight: 700;
+      color: #fff;
+      animation: fadeInUp 1.3s 0.22s cubic-bezier(.21,.98,.6,.99) both;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+      position: relative;
+      z-index: 2;
+    }
+    label {
+      text-align: left;
+      margin-bottom: 2px;
+      font-size: 1.08em;
+      color: #e2e6ef;
+      font-weight: 500;
+      letter-spacing: 0.1px;
+      animation: fadeInUp 1.1s 0.18s both;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 17px;
+      border: none;
+      margin-bottom: 2px;
+      font-size: 1em;
+      font-family: inherit;
+      color: var(--input-color);
+      background: var(--input-bg);
+      transition: box-shadow .2s, background 0.3s;
+      box-shadow: 0 1px 5px 0 rgba(44,62,80,0.03);
+      outline: none;
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+      animation: fadeInUp .92s cubic-bezier(.21,.98,.6,.99) forwards;
+    }
+    input:nth-of-type(1), label[for="nom"] { animation-delay: 0.30s; }
+    input:nth-of-type(2), label[for="email"] { animation-delay: 0.38s; }
+    input[type="date"], label[for="arrivee"] { animation-delay: 0.46s; }
+    select[name="hotel"], label[for="hotel"] { animation-delay: 0.54s; }
+    input[type="number"], label[for="nuits"] { animation-delay: 0.62s; }
+    select[name="chambre"], label[for="chambre"] { animation-delay: 0.68s; }
+    textarea, label[for="commentaire"] { animation-delay: 0.74s; }
 
-    form { max-width: 400px; }
-    label { display: block; margin-top: 10px; }
-    input, select { width: 100%; padding: 5px; }
+    input:focus, select:focus, textarea:focus {
+      box-shadow: 0 0 0 2px #2d89ef66;
+      background: #f1f7ff;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 48px;
+      max-height: 120px;
+    }
+    .submit-btn {
+      background: linear-gradient(90deg, #2d89ef 35%, #16a085 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.13em;
+      border: none;
+      border-radius: 22px;
+      padding: 14px 0;
+      margin-top: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 12px 0 rgba(44,62,80,0.08);
+      transition: background 0.22s, transform 0.14s, box-shadow 0.18s;
+      letter-spacing: 0.7px;
+      position: relative;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+      animation: fadeInUp .94s 0.82s cubic-bezier(.21,.98,.6,.99) forwards;
+      overflow: hidden;
+    }
+    .submit-btn::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 300%;
+      height: 340%;
+      background: radial-gradient(circle, #2d89ef 60%, #16a085 120%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.13;
+      border-radius: 100%;
+      z-index: 0;
+      transition: transform .38s cubic-bezier(.33,1,.68,1), opacity .32s;
+    }
+    .submit-btn:hover, .submit-btn:focus {
+      background: linear-gradient(90deg, #16a085 0%, #2d89ef 100%);
+      transform: scale(1.04) translateY(-2px);
+      box-shadow: 0 4px 18px 0 rgba(44,62,80,0.18);
+    }
+    .submit-btn:hover::before, .submit-btn:focus::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.22;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .reservation-container {
+        max-width: 99vw;
+        padding: 19px 2vw 11px 2vw;
+        border-radius: 18px;
+      }
+      h1 {
+        font-size: 1.17rem;
+      }
+      input, select, textarea {
+        font-size: 0.99em;
+        padding: 8px 7px;
+        border-radius: 12px;
+      }
+      .submit-btn {
+        font-size: 1em;
+        padding: 10px 0;
+        border-radius: 14px;
+      }
+    }
+    @media (max-width: 350px) {
+      .reservation-container {
+        padding: 6px 1vw 4px 1vw;
+        border-radius: 8px;
+      }
+      h1 { font-size: 0.97rem;}
+    }
+    /* Success message animation */
+    .success-message {
+      color: #fff;
+      background: linear-gradient(90deg, #16a085 0%, #2d89ef 100%);
+      border-radius: 15px;
+      margin-top: 18px;
+      padding: 15px 10px;
+      font-size: 1.1em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      box-shadow: 0 2px 12px 0 rgba(44,62,80,0.16);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeSuccess 0.7s 0.09s cubic-bezier(.21,.98,.6,.99) forwards;
+    }
+    @keyframes fadeSuccess {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Réserver votre séjour</h1>
-  <form action="#" method="post">
-    <label>Nom complet :</label>
-    <input type="text" name="nom" required>
+  <div class="reservation-container">
+    <h1>Réserver votre séjour</h1>
+    <form action="#" method="post" id="form-container" autocomplete="on">
+      <label for="nom">Nom complet :</label>
+      <input type="text" id="nom" name="nom" required autocomplete="name">
 
-    <label>Email :</label>
-    <input type="email" name="email" required>
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
 
-    <label>Date d’arrivée :</label>
-    <input type="date" name="arrivee" required>
+      <label for="arrivee">Date d’arrivée :</label>
+      <input type="date" id="arrivee" name="arrivee" required>
 
-    <label>Nombre de nuits :</label>
-    <input type="number" name="nuits" min="1" required>
+      <label for="hotel">Choisissez un hôtel :</label>
+      <select id="hotel" name="hotel" required>
+        <option value="" disabled selected>-- Sélectionnez --</option>
+        <option value="Hotel Indépendance">Hôtel Indépendance</option>
+        <option value="Laico Ouaga 2000">Laico Ouaga 2000</option>
+        <option value="Palm Beach Hotel">Palm Beach Hôtel</option>
+        <option value="Bravia Hotel">Bravia Hôtel</option>
+        <option value="Sopatel Silmande">Sopatel Silmandé</option>
+      </select>
 
-    <label>Type de chambre :</label>
-    <select name="chambre">
-      <option value="simple">Simple</option>
-      <option value="double">Double</option>
-      <option value="suite">Suite</option>
-    </select>
+      <label for="nuits">Nombre de nuits :</label>
+      <input type="number" id="nuits" name="nuits" min="1" required>
 
-    <label>Commentaires :</label>
-    <textarea name="commentaire" rows="3"></textarea>
+      <label for="chambre">Type de chambre :</label>
+      <select id="chambre" name="chambre" required>
+        <option value="simple">Simple</option>
+        <option value="double">Double</option>
+        <option value="suite">Suite</option>
+      </select>
 
-    <br><br>
-    <input type="submit" value="Réserver">
-  </form>
-  <nav style="background:#eee; padding:10px; margin-bottom:20px;">
-   <a href="Grace.html">ACCEUIL</a><br>
-    <a href="AZIZ.html">PATRIMOINE</a><br>
-    <a href="ABDOUL.html">RESERVATION D'Hôtel</a><br>
-    <a href="Soulama.html">GALERIE</a><br>
-   </body>
-</html>
+      <label for="commentaire">Commentaires :</label>
+      <textarea id="commentaire" name="commentaire" rows="3"></textarea>
+
+      <button type="submit" class="submit-btn">Réserver</button>
+    </form>
+    <div id="success-message-placeholder"></div>
   </div>
-</body>
+  <script>
+    // Animation de confirmation + retour automatique à la page précédente
+    document.getElementById('form-container').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-   
-        
-   
-</nav>
+      // Message animé de succès
+      const placeholder = document.getElementById('success-message-placeholder');
+      placeholder.innerHTML = '<div class="success-message">Réservation envoyée avec succès !<br>Vous allez être redirigé(e)...</div>';
+
+      // Remettre le formulaire en gris et désactiver
+      Array.from(document.querySelectorAll('#form-container input, #form-container select, #form-container textarea, #form-container button')).forEach(function(el) {
+        el.disabled = true;
+        el.style.opacity = 0.6;
+        el.style.cursor = 'not-allowed';
+      });
+
+      // Retour automatique à la page précédente après 2.5 secondes
+      setTimeout(function() {
+        window.history.back();
+      }, 2500);
+    });
+  </script>
 </body>
 </html>
