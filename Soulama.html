@@ -3,114 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <title>Galerie</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Libre+Baskerville:700&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 10px;
-      padding: 10px;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
-      font-weight:100px;
     } 
-    /* 🔁 memorial-sankara.jpg 🔁 */
-    body{
-       height: 100%;
+    body {
+      min-height: 100vh;
       font-family: 'Roboto', sans-serif;
-     
-      background-image: url('memorial-sankara.jpg'); /* 🔁 Remplacez ce lien ici */
-      background-size: cover;
-      background-position: center;
-      
-     
-      z-index: -1;
+      background:
+        linear-gradient(135deg, #aeefff 0%, #7fd2f8 100%),
+        url('memorial-sankara.jpg') center center/cover no-repeat;
+      background-blend-mode: lighten;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-    header {padding: 100px 20px 40px;
+    header {
+      width: 100%;
+      padding: 60px 20px 30px;
       text-align: center;
     }
-
     header h1 {
       font-family: 'Libre Baskerville', serif;
-      font-size: 3.5em;
+      font-size: 2.2em;
       color: #FFD700;
-      text-shadow: 2px 2px 8px black;
+      text-shadow: 2px 2px 8px #000;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      background: rgba(0,0,0,0.35);
+      border-radius: 20px;
+      display: inline-block;
+      padding: 10px 16px;
     }
-
-    .album img{width:400px;
-               height:300px;
-               object-fit:cover;
-               border-radius:50px;
+    .album {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      width: 96vw;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 24px 0;
+      background: rgba(255,255,255,0.09);
+      border-radius: 28px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.13);
     }
-
-       }
+    .album img {
+      width: 360px;
+      max-width: 90vw;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 30px;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.18);
+      transition: transform 0.23s, box-shadow 0.23s;
+      background: #fff;
+    }
+    .album img:hover {
+      transform: scale(1.04) rotate(-2deg);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.23);
+      z-index: 2;
+    }
+    @media (max-width: 600px) {
+      header {
+        padding: 22px 4vw 10px;
+      }
+      header h1 {
+        font-size: 1.1em;
+        padding: 5px 5vw;
+      }
+      .album {
+        gap: 13px;
+        border-radius: 13px;
+        padding: 12px 0;
+      }
+      .album img {
+        width: 95vw;
+        max-width: 98vw;
+        height: 30vw;
+        min-height: 130px;
+        border-radius: 11px;
+      }
+    }
   </style>
 </head>
 <body>
- <h1>  <h1>🇧🇫🇧🇫🫶🫶🫶🫶🫶🫶🫶🫶🫶 GALERIE 🫶🫶🫶🫶🫶🫶🫶🫶🇧🇫🇧🇫</h1>
-<div class="album">
-
-<img src="memorial-sankara.jpg" alt="pt1">
-
-
-
-
-
-
- 
-
-<img src="place-nation.jpg" alt="pt1">
-<img src="palais.jpg" alt="pt1">
-
-
-
-
-
-<img src="village-artisan.jpg" alt="pt1">
-
-
-
-
-
-
-<img src="CATHEDRALE_de_Ouagadougou.jpg" alt="pt1"> 
-
-<img src="monument-independance.jpg" alt="pt1">
-
-
-<img src="M0.jp.jpg" alt="pt1">
-
-
-<img src="Bangr-Weogo.jpg" alt="pt1" >
-
-
-
-
-
-
-
-<img src="musee-musique.jpg" alt="pt1">
-<img src="cinema.jpg" alt="pt1">
-
-
-
-
-
-
-</div>
-
-
-
-</style>
+  <header>
+    <h1>🇧🇫🫶 GALERIE 🫶🇧🇫</h1>
+  </header>
+  <div class="album">
+    <img src="memorial-sankara.jpg" alt="Mémorial Sankara">
+    <img src="place-nation.jpg" alt="Place de la Nation">
+    <img src="palais.jpg" alt="Palais">
+    <img src="village-artisan.jpg" alt="Village Artisanal">
+    <img src="cat4.jpg" alt="Cathédrale de Ouagadougou">
+    <img src="monument-independance.jpg" alt="Monument de l'Indépendance">
+    <img src="M0.jp.jpg" alt="M0">
+    <img src="Bangr-Weogo.jpg" alt="Bangr-Weogo">
+    <img src="musee-musique.jpg" alt="Musée de la Musique">
+    <img src="cinema.jpg" alt="Cinéma">
+  </div>
 </body>
 </html>
-
-
- 
-
-
- 
-
-
- 
-
-
-    
