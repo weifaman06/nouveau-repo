@@ -1,113 +1,136 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Accueil </title>
-    <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+  <title>Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Libre+Baskerville:700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
     html, body {
       height: 100%;
       font-family: 'Roboto', sans-serif;
       color: #fff;
-    }
-    /* 🔁 memorial-sankara.jpg 🔁 */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background-image: url('memorial-sankara.jpg'); /* 🔁 Remplacez ce lien ici */
-      background-size: cover;
-      background-position: center;
+      background: url('memorial-sankara.jpg') center center/cover no-repeat;
       background-attachment: fixed;
-     
+      overflow-x: hidden;
+    }
+    .particles {
+      position: fixed;
+      top:0; left:0; width:100vw; height:100vh;
       z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
     }
-
-    header {padding: 100px 20px 40px;
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,215,0,0.12);
+      animation: float 12s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.7);}
+      100% { transform: translateY(-10vh) scale(1.2);}
+    }
+    header {
+      padding: 100px 20px 40px;
       text-align: center;
+      animation: fadein 1.5s cubic-bezier(.68,-0.55,.27,1.55);
     }
-
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(-40px);}
+      to   { opacity: 1; transform: none;}
+    }
     header h1 {
       font-family: 'Libre Baskerville', serif;
-      font-size: 3.5em;
+      font-size: 3.2em;
       color: #FFD700;
-      text-shadow: 2px 2px 8px black;
+      text-shadow: 2px 2px 16px #000, 0 0 30px #FFD70066;
+      letter-spacing: 2px;
+      animation: glow 2s infinite alternate;
     }
-
+    @keyframes glow {
+      from { text-shadow: 2px 2px 16px #000, 0 0 15px #FFD70066;}
+      to   { text-shadow: 2px 2px 16px #000, 0 0 30px #FFD700;}
+    }
     .section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-      background-color: rgba(0, 0, 0, 0.65);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      padding: 40px 30px;
+      max-width: 900px;
+      margin: 30px auto 0 auto;
+      background: rgba(0, 102, 204, 0.88); /* Bleu vif transparent */
+      border-radius: 22px;
+      box-shadow: 0 8px 40px 0 rgba(0,0,0,0.28);
+      backdrop-filter: blur(1.5px);
+      animation: fadein 2.5s 0.5s both;
+      border: 2px solid #FFD70033;
     }
-
-    .hero {
-      font-size: 1.2em;
-      font-weight: bold;
-     color: #ff4444;
-      margin-bottom: 20px;
+    .section p {
+      font-size: 1.18em;
+      margin-bottom: 18px;
+      line-height: 1.6;
+      transition: color 0.3s;
+      cursor: pointer;
+      word-break: break-word;
     }
-
-    .quote {
-      font-style: italic;
-      font-size: 1.3em;
-
-      text-align: center;
-      margin: 30px 0;
+    .section p:hover {
+      color: #FFD700;
+      background: rgba(255,215,0,0.07);
+      border-radius: 10px;
+      transition: background 0.4s, color 0.4s;
     }
-
-    .button {
-      display: inline-block;
-      padding: 15px 30px;
-      background: #FFD700;
-      color: #000;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(255,215,0,0.4);
-      transition: transform 0.3s ease;
-      margin-top: 30px;
+    @media (max-width: 900px) {
+      .section {
+        max-width: 98vw;
+        padding: 22px 6vw;
+        margin: 24px 1vw 0 1vw;
+      }
     }
-
-    .button:hover {
- transform: scale(1.05);
- @media (max-width: 600px) {
+    @media (max-width: 600px) {
+      header {
+        padding: 45px 10px 15px;
+      }
       header h1 {
         font-size: 2em;
       }
-
       .section {
-        padding: 20px;
+        padding: 12px 2vw;
+        margin: 14px 1vw 0 1vw;
+        border-radius: 13px;
+      }
+      .section p {
+        font-size: 1.03em;
+      }
+    }
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 1.15em;
+      }
+      .section {
+        padding: 6px 1vw;
       }
     }
   </style>
 </head>
 <body>
+<!-- Particules animées -->
+<div class="particles">
+  <div class="particle" style="width:60px;height:60px;left:10vw;animation-delay:0s;"></div>
+  <div class="particle" style="width:30px;height:30px;left:60vw;animation-delay:2s;"></div>
+  <div class="particle" style="width:42px;height:42px;left:35vw;animation-delay:4s;"></div>
+  <div class="particle" style="width:50px;height:50px;left:78vw;animation-delay:1s;"></div>
+  <div class="particle" style="width:36px;height:36px;left:85vw;animation-delay:3s;"></div>
+  <div class="particle" style="width:25px;height:25px;left:22vw;animation-delay:5s;"></div>
+</div>
 <header>
-<h1> DESCRIPTION DE OUAGADOUGOU</h1>
+  <h1>DESCRIPTION DE OUAGADOUGOU</h1>
 </header>
-
-    <p><strong>Ouagadougou</strong> est la capitale du <strong>Burkina Faso</strong>, située au cœur du pays, dans la région du Centre. Elle est la plus grande ville du Burkina Faso et constitue le centre politique, administratif, économique et culturel du pays. Ouagadougou est souvent abrégée en <strong>« Ouaga »</strong>.</p>
-
-    <p>La ville abrite les principales institutions du pays, notamment la présidence, l'Assemblée nationale, les ministères et les représentations diplomatiques. Elle est également un pôle universitaire important, avec des établissements comme l’Université Joseph Ki-Zerbo.</p>
-
-    <p>Sur le plan culturel, Ouagadougou est réputée pour son dynamisme. Elle accueille des événements majeurs tels que le <strong>FESPACO</strong> (Festival Panafricain du Cinéma et de la Télévision de Ouagadougou), l’un des plus grands festivals de cinéma africain. La ville est aussi riche en artisanat, musique traditionnelle et contemporaine, et en manifestations artistiques.</p>
-
-    <p>L’économie de Ouagadougou repose sur le commerce, les services, l’artisanat, ainsi que des activités industrielles légères. Elle possède un réseau de marchés animés, dont le Grand Marché de Rood-Woko, qui est un centre névralgique du commerce local.</p>
-
-    <p>Ouagadougou est dotée d’un aéroport international, de plusieurs routes principales et d’un système de transport urbain en développement, même si les déplacements se font largement à moto ou en taxi.</p>
-
-    <p>Malgré les défis liés à l’urbanisation rapide, à la sécurité et à la gestion des infrastructures, Ouagadougou reste une ville en pleine croissance, marquée par l’hospitalité de ses habitants, connus sous le nom de <strong>Ouagalais</strong>.</p>
-
+<div class="section">
+  <p><strong>Ouagadougou</strong> est la capitale du <strong>Burkina Faso</strong>, située au cœur du pays, dans la région du Centre. Elle est la plus grande ville du Burkina Faso et constitue le centre politique, administratif, économique et culturel du pays. Ouagadougou est souvent abrégée en <strong>« Ouaga »</strong>.</p>
+  <p>La ville abrite les principales institutions du pays, notamment la présidence, l'Assemblée nationale, les ministères et les représentations diplomatiques. Elle est également un pôle universitaire important, avec des établissements comme l’Université Joseph Ki-Zerbo.</p>
+  <p>Sur le plan culturel, Ouagadougou est réputée pour son dynamisme. Elle accueille des événements majeurs tels que le <strong>FESPACO</strong> (Festival Panafricain du Cinéma et de la Télévision de Ouagadougou), l’un des plus grands festivals de cinéma africain. La ville est aussi riche en artisanat, musique traditionnelle et contemporaine, et en manifestations artistiques.</p>
+  <p>L’économie de Ouagadougou repose sur le commerce, les services, l’artisanat, ainsi que des activités industrielles légères. Elle possède un réseau de marchés animés, dont le Grand Marché de Rood-Woko, qui est un centre névralgique du commerce local.</p>
+  <p>Ouagadougou est dotée d’un aéroport international, de plusieurs routes principales et d’un système de transport urbain en développement, même si les déplacements se font largement à moto ou en taxi.</p>
+  <p>Malgré les défis liés à l’urbanisation rapide, à la sécurité et à la gestion des infrastructures, Ouagadougou reste une ville en pleine croissance, marquée par l’hospitalité de ses habitants, connus sous le nom de <strong>Ouagalais</strong>.</p>
+</div>
 </body>
 </html>
